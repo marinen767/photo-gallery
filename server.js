@@ -6,10 +6,20 @@ const path = require("path");
 const app = express();
 const port = process.env.PORT || 3000;
 
-// ✅ Allow requests from your frontend domain
+// ✅ Allow requests from your frontend domain explicitly
 app.use(cors({
-    origin: "http://marina.etfos.hr" // Replace with your actual frontend domain
+    origin: "http://marina.etfos.hr/public", // Change to your frontend URL
+    methods: "GET",
+    allowedHeaders: "Content-Type"
 }));
+
+// ✅ Force CORS headers manually (backup fix)
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "http://marina.etfos.hr/public");
+    res.header("Access-Control-Allow-Methods", "GET");
+    res.header("Access-Control-Allow-Headers", "Content-Type");
+    next();
+});
 
 app.use(express.static("public")); // Serve static files (HTML, CSS, JS, images)
 app.get("/", (req, res) => {
