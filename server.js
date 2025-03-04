@@ -19,7 +19,7 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Methods", "GET");
     res.header("Access-Control-Allow-Headers", "Content-Type");
     next();
-});**//
+});*/
 
 app.use(express.static("public")); // Serve static files (HTML, CSS, JS, images)
 app.get("/", (req, res) => {
