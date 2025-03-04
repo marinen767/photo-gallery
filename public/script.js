@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  fetch("http://localhost:3000/get-images")
+  fetch("/get-images")
       .then(response => response.json())
       .then(images => {
           const container = $("#image-gallery");
